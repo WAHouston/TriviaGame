@@ -1,7 +1,26 @@
 h1 {
-
+    color: blue;
+    text-align: center;
 }
 
 .start {
-    
+    color: red;
+    text-align: center;
+    background: blue;
+    border: 1px solid black;
+}
+
+body {
+    background: white;
+}
+
+section {
+    background: green;
+}
+
+p {
+    color: yellow;
+    text-align: center;
+    background: pink;
+    border: 1px solid black;
 }
