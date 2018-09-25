@@ -71,6 +71,7 @@ $(document).ready(function() {
         $(".timer").text("Time Remaining: " + time)
         if (time === 0){
             stop()
+            pageA("timeUp")
         }
     }
 
@@ -90,8 +91,15 @@ $(document).ready(function() {
 
     }
 
-    var pageA = function() {
-
+    var pageA = function(response) {
+        
+        if (response === "correct") {
+            console.log("Yes!")
+        } else if (response === "incorrect") {
+            console.log("No!")
+        } else {
+            console.log("Pizza")
+        }
 
     }
 
@@ -110,6 +118,17 @@ $(document).ready(function() {
         startButton.detach()
         pageQ()
     })
+
+    $(document).on("click", ".choice", function(event){
+        if ($(event.currentTarget).text() === questions[counterQ].choices[questions[counterQ].answer]){
+            $("#anchor").empty()
+            pageA("correct")
+        } else {
+            $("#anchor").empty()
+            pageA("incorrect")
+        }
+    })
+
 
     
 })
