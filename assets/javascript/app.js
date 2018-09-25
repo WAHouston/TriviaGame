@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     var numIncorrect = 0
 
-    var time = 5
+    var time = 30
 
     var timerQ
 
@@ -96,18 +96,24 @@ $(document).ready(function() {
 
     var pageA = function(response) {
         stop()
-        time = 5
+        time = 30
         $("#anchor").empty()
-        var timeOut = setTimeout(pageQ, 5000)
+        var timeOut = setTimeout(pageQ, 3000)
         if (response === "correct") {
             numCorrect++
             $("<p>Correct!</p>").appendTo("#anchor")
+            $("<p>" + questions[counterQ].question + "</p>").appendTo("#anchor")
+            $("<p>The answer is: " + questions[counterQ].choices[questions[counterQ].answer] + "</p>").appendTo("#anchor")
         } else if (response === "incorrect") {
             numIncorrect++
             $("<p>Incorrect!</p>").appendTo("#anchor")
+            $("<p>" + questions[counterQ].question + "</p>").appendTo("#anchor")
+            $("<p>The answer is: " + questions[counterQ].choices[questions[counterQ].answer] + "</p>").appendTo("#anchor")
         } else {
             numIncorrect++
             $("<p>Time's Up!</p>").appendTo("#anchor")
+            $("<p>" + questions[counterQ].question + "</p>").appendTo("#anchor")
+            $("<p>The answer is: " + questions[counterQ].choices[questions[counterQ].answer] + "</p>").appendTo("#anchor")
         }
         counterQ++
         if (counterQ > 9) {
@@ -127,7 +133,7 @@ $(document).ready(function() {
         numCorrect = 0
         numIncorrect = 0
         counterQ = 0
-        time = 5
+        time = 30
         pageQ()
     })
 
