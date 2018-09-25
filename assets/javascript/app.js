@@ -37,6 +37,31 @@ $(document).ready(function() {
             choices: ["Popeye the Sailor", "Mickey Mouse", "Bugs Bunny", "Gertie the Dinosaur"],
             answer: 0
         }
+        {
+            question: "How many individual hairs does Sully from Monsters Inc have?",
+            choices: ["1.4 million", "5.6 million", "2.3 million", "3.8 million"],
+            answer: 2
+        }
+        {
+            question: "What is the name of the sorceror in the Sorceror's Apprentice segment of the movie Fantasia?",
+            choices: ["Mortimer", "Mickey", "Yensid", "Czernobog"],
+            answer: 2
+        }
+        {
+            question: "What where the original names of Tom and Jerry?",
+            choices: ["Jim and Tim", "Jasper and Jinx", "Hunter and Howard", "Bill and Ted"],
+            answer: 0
+        }
+        {
+            question: "Jim Cummings is best known as the voice of Winnie the Pooh, but he was also the voice of a villain in which show?",
+            choices: ["Dexter's Lab", "Powerpuff Girls", "Darkwing Duck", "Samurai Jack"],
+            answer: 1
+        }
+        {
+            question: "Gertie the Dinosaur was created by which famous animator?",
+            choices: ["Emile Cohl", "J. Stuart Blackton", "Ub Iwerks", "Winsor McCay"],
+            answer: 3
+        }
     ]
 
     var countdown = function() {
@@ -51,31 +76,25 @@ $(document).ready(function() {
         clearInterval(timer)
     }
 
-    var page1 = function() {    
+    var pageQ = function() {    
         timer = setInterval(countdown, 1000)
         var disTimer = $("<p>Time Remaining: 30</p>").appendTo("#anchor")
         disTimer.addClass("timer")
         
     }
 
+    var pageA = function() {
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    var pageResults = function() {
+        
+        
+        var restartButton = $("<p>Restart?</p>").appendTo("#")
+        restartButton.click(function(){
+            restart()
+        }
+    }
 
 
 
