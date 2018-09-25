@@ -83,14 +83,15 @@ $(document).ready(function() {
         var disTimer = $("<p>Time Remaining: 30</p>").appendTo("#anchor")
         disTimer.addClass("timer")
         var currentQ = $("<p>" + questions[counterQ].question + "</p>").appendTo("#anchor")
-        var choice1 = $("<p>" + questions[counterQ].choices[0] + "</p>").appendTo("#anchor")
-        var choice2 = $("<p>" + questions[counterQ].choices[1] + "</p>").appendTo("#anchor")
-        var choice3 = $("<p>" + questions[counterQ].choices[2] + "</p>").appendTo("#anchor")
-        var choice4 = $("<p>" + questions[counterQ].choices[3] + "</p>").appendTo("#anchor")
+        for (var i = 0; i < questions[counterQ].choices.length; i++) {
+            $("<p>" + questions[counterQ].choices[i] + "</p>").addClass("choice").appendTo("#anchor")
+        }
+
+
     }
 
     var pageA = function() {
-        
+
 
     }
 
@@ -109,4 +110,6 @@ $(document).ready(function() {
         startButton.detach()
         pageQ()
     })
+
+    
 })
