@@ -6,10 +6,13 @@ $(document).ready(function() {
     var restart = function() {
         startButton.appendTo("#anchor")
     }
-    
+    var numCorrect = 0
+
+    var numIncorrect = 0
+
     var time = 30
 
-    var timer
+    var timerQ
 
     var counterQ = 0
 
@@ -71,16 +74,17 @@ $(document).ready(function() {
         $(".timer").text("Time Remaining: " + time)
         if (time === 0){
             stop()
-            pageA("timeUp")
+            pageA()
         }
     }
 
     var stop = function() {
-        clearInterval(timer)
+        clearInterval(timerQ)
     }
 
-    var pageQ = function() {    
-        timer = setInterval(countdown, 1000)
+    var pageQ = function() { 
+        $("#anchor").empty()   
+        timerQ = setInterval(countdown, 1000)
         var disTimer = $("<p>Time Remaining: 30</p>").appendTo("#anchor")
         disTimer.addClass("timer")
         var currentQ = $("<p>" + questions[counterQ].question + "</p>").appendTo("#anchor")
@@ -92,15 +96,20 @@ $(document).ready(function() {
     }
 
     var pageA = function(response) {
-        
+        clearInterval(timerQ)
+        $("#anchor").empty()
+        setTimeout(pageQ, 5000)
         if (response === "correct") {
-            console.log("Yes!")
+            numCorrect++
+            $("<p>Correct!</p>").appendTo("#anchor")
         } else if (response === "incorrect") {
-            console.log("No!")
+            numIncorrect++
+            $("<p>Incorrect!</p>").appendTo("#anchor")
         } else {
-            console.log("Pizza")
+            numIncorrect++
+            $("<p>Time's Up!</p>").appendTo("#anchor")
         }
-
+        counterQ++
     }
 
     var pageResults = function() {
@@ -121,10 +130,8 @@ $(document).ready(function() {
 
     $(document).on("click", ".choice", function(event){
         if ($(event.currentTarget).text() === questions[counterQ].choices[questions[counterQ].answer]){
-            $("#anchor").empty()
             pageA("correct")
-        } else {
-            $("#anchor").empty()
+        } else {            
             pageA("incorrect")
         }
     })
