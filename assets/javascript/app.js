@@ -1,16 +1,10 @@
 $(document).ready(function() {
-    var startButton = $("<p>Start!</p>").appendTo("#anchor")
-    
-    startButton.addClass("start")
 
-    var restart = function() {
-        startButton.appendTo("#anchor")
-    }
     var numCorrect = 0
 
     var numIncorrect = 0
 
-    var time = 30
+    var time = 5
 
     var timerQ
 
@@ -55,7 +49,7 @@ $(document).ready(function() {
         {
             question: "What where the original names of Tom and Jerry?",
             choices: ["Jim and Tim", "Jasper and Jinx", "Hunter and Howard", "Bill and Ted"],
-            answer: 0
+            answer: 1
         },
         {
             question: "Jim Cummings is best known as the voice of Winnie the Pooh, but he was also the voice of a villain in which show?",
@@ -68,6 +62,12 @@ $(document).ready(function() {
             answer: 3
         }
     ]
+
+    var startButton = function() {
+        $("<p>Start!</p>").addClass("start").appendTo("#anchor")
+    }
+
+    startButton()
 
     var countdown = function() {
         time--
@@ -82,7 +82,7 @@ $(document).ready(function() {
         clearInterval(timerQ)
     }
 
-    var pageQ = function() { 
+    var pageQ = function() {
         $("#anchor").empty()   
         timerQ = setInterval(countdown, 1000)
         var disTimer = $("<p>Time Remaining: 30</p>").appendTo("#anchor")
@@ -92,13 +92,13 @@ $(document).ready(function() {
             $("<p>" + questions[counterQ].choices[i] + "</p>").addClass("choice").appendTo("#anchor")
         }
 
-
     }
 
     var pageA = function(response) {
-        clearInterval(timerQ)
+        stop()
+        time = 5
         $("#anchor").empty()
-        setTimeout(pageQ, 5000)
+        var timeOut = setTimeout(pageQ, 5000)
         if (response === "correct") {
             numCorrect++
             $("<p>Correct!</p>").appendTo("#anchor")
@@ -110,21 +110,24 @@ $(document).ready(function() {
             $("<p>Time's Up!</p>").appendTo("#anchor")
         }
         counterQ++
+        if (counterQ > 9) {
+            clearTimeout(timeOut)
+            pageResults()
+        }
     }
 
     var pageResults = function() {
-        
-        
-        var restartButton = $("<p>Restart?</p>").appendTo("#")
-        restartButton.click(function(){
-            restart()
-        }
-        )}
+        $("<p>Results:</p>").appendTo("#anchor")
+        $("<p>Correct:" + numCorrect + "</p>").appendTo("#anchor")
+        $("<p>Incorrect:" + numIncorrect + "</p>").appendTo("#anchor")
+        $("<p>Restart?</p>").addClass("start").appendTo("#anchor")
+    }
 
-
-
-    startButton.click(function(){
-        startButton.detach()
+    $(document).on("click", ".start", function(){
+        numCorrect = 0
+        numIncorrect = 0
+        counterQ = 0
+        time = 5
         pageQ()
     })
 
@@ -135,7 +138,5 @@ $(document).ready(function() {
             pageA("incorrect")
         }
     })
-
-
     
 })
