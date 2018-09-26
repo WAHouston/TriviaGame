@@ -1,27 +1,39 @@
 h1 {
-    color: blue;
     text-align: center;
+    color: black;
+    font-family: 'Ewert', cursive;
+    font-size: 100px;
+    margin: 20px auto;
+    width: 960px;
+    padding: 10px 0px 25px 0px;
 }
 
 .start {
     color: red;
     text-align: center;
+    font-family: 'Ewert', cursive;
     background: blue;
     border: 1px solid black;
 }
 
 body {
-    background: white;
+    background-image: url("../images/film.jpeg");
+    background-size: cover
 }
 
 section {
-    background: green;
+    text-align: center;
+    font-size: 40px;
+    background: #deb887aa;
+    width: 960px;
+    margin: 40px auto;
     border: 1px solid black;
 }
 
 p {
     color: yellow;
     text-align: center;
+    font-family: 'Chicle', cursive;
     background: pink;
     border: 1px solid black;
 }
